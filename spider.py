@@ -1,12 +1,11 @@
-import requests, re, urlparse, time, sys
-#http://10.0.2.6/mutillidae
-#https://zsecurity.org
-#https://arcet.org
+import requests, re, time, sys 
+import urllib.parse as urlparse
 
-target_url ="http://arcet.org"
+
+
 target_list = []
 print( " ")
-print("                      __x Eagle__")
+print("                      __Spy Dir__")
 print("_____________________                              _____________________")
 print("`-._:  .:'   `:::  .:\           |\__/|           /::  .:'   `:::  .:.-'")
 print("    \      :          \          |:   |          /         :       /    ")
@@ -22,18 +21,20 @@ print("                                  \  / Created by                        
 print("                                   \/            __:AJMAL:") 
 print("\n")
 print("\n")
+target_url = "example.com /" #your testing application address 
+
 packet = 0
 x = 1
 while x < 5:
 	x = 1 + x
 	time.sleep(1)
 	packet = packet + 1
-	print("\r[*] Program starts in  " + str(packet)),
-	sys.stdout.flush()
+	print("\r[+] Program starts in  " + str(packet), end="")
+	
 time.sleep(1)
 def extract_url(url):
 	responce = requests.get(url)
-	return re.findall('(?:href=")(.*?)"', responce.content)
+	return re.findall('(?:href=")(.*?)"', responce.content.decode(errors="ignore"))
 
 def crawl(url):
 	
@@ -51,3 +52,4 @@ def crawl(url):
 					crawl(link)
 
 crawl(target_url)
+
